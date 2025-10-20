@@ -6,7 +6,7 @@ import {
   deleteUser // ← esta línea es clave
 } from "../controllers/userController.js";
 
-import { verifyToken } from "../middlewares/authMiddleware.js";
+import { verifyToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 

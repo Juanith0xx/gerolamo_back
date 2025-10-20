@@ -1,16 +1,32 @@
 import express from "express";
-import { getPendingPosts, approvePost, rejectPost } from "../controllers/postController.js";
-import { verifyToken, verifyAdmin } from "../middlewares/authMiddleware.js";
+import {
+  getPendingPosts,
+  approvePost,
+  rejectPost,
+  createPost,
+  getApprovedPosts,
+  updatePost,
+  deletePost
+} from "../controllers/postController.js";
+import { verifyToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// Obtener posts pendientes
-router.get("/pending", verifyToken, verifyAdmin, getPendingPosts);
+// Crear post (público)
+router.post("/create", createPost);
 
-// Aprobar post
-router.patch("/approve/:id", verifyToken, verifyAdmin, approvePost);
+// Admin obtiene posts pendientes
+router.get("/pending", verifyToken, getPendingPosts);
 
-// Rechazar post
-router.delete("/reject/:id", verifyToken, verifyAdmin, rejectPost);
+// Admin aprueba o rechaza
+router.patch("/approve/:id", verifyToken, approvePost);
+router.delete("/reject/:id", verifyToken, rejectPost);
+
+// Obtener posts aprobados (público)
+router.get("/approved", getApprovedPosts);
+
+// Admin actualiza o elimina posts
+router.put("/:id", verifyToken, updatePost);
+router.delete("/:id", verifyToken, deletePost);
 
 export default router;
