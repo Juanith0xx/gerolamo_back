@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  telefono: { type: String, required: true },
   rol: { type: String, enum: ["veterinario", "admin"], default: "veterinario" },
   resetToken: { type: String },
 }, { timestamps: true });
