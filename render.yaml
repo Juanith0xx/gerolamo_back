@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: gerolamo-backend
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    envVars:
+      - key: MONGO_URI
+        value: "mongodb+srv://gerolamo:bakter2020.@gerolamobackend.hev9yw0.mongodb.net/blog_vet"
+      - key: JWT_SECRET
+        value: "miClaveSuperSecreta123"
